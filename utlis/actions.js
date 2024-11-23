@@ -15,13 +15,32 @@ export const addItem = async (FormData) => {
         //DB operations 
         const newItem = new InventoryItem(data);
         await newItem.save();
-        console.log("Item",newItem);
+        // console.log("Item",newItem);
     } catch (error) {
         console.error("Failed to add item:", error); 
-        
-
     }
+    revalidatePath('/')
+    redirect('/')
 };
 //POST
 //GET ALL
+export const getAllItems = async () =>{
+     //connect to db
+     await connect();
+     return await InventoryItem.find({});
+}
+
+//GET SINGLE
+export const getItemById = async (id) =>{
+    //connect to db
+    await connect();
+    return await InventoryItem.findById(id);
+}
+
+
+//DELETE
+
+
+
+
 
