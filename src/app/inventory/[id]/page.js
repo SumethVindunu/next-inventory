@@ -2,6 +2,7 @@
 import React from "react";
 import { getItemById } from "../../../../utlis/actions";
 import Link from 'next/link';
+import { updateItem } from "../../../../utlis/actions";
 
 
 const UpdateInventory = async ({params}) => {
@@ -18,7 +19,9 @@ const UpdateInventory = async ({params}) => {
         <p className="text-gray-600 mb-6">
           Fill out the form below to add a new item to your inventory.
         </p>
-        <form className="space-y-4">
+        <form 
+        action={updateItem}
+        className="space-y-4">
           <div>
             <label
               htmlFor="name"

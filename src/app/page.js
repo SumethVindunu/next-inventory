@@ -1,5 +1,6 @@
 
 import { getAllItems } from "../../utlis/actions";
+import { deleteItem } from "../../utlis/actions";
 import Link from 'next/link';
 export default async function Home() {
   const items = await getAllItems();
@@ -28,8 +29,19 @@ export default async function Home() {
                           <td className="py-3 px-4 text-sm text-gray-700">{item.quantity}</td>
                           <td className="py-3 px-4 text-sm text-gray-700">{item.description}</td>
                           <td className="py-3 px-4 text-sm space-x-2">
-                              <button className="bg-yellow-500 text-white py-1 px-3 rounded-md hover:bg-yellow-600">Edit</button>
-                              <button className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600">Delete</button>
+                            
+                            <Link href={`/inventory/${item._id}`}>
+                                <button className="bg-yellow-500 text-white py-1 px-3 rounded-md  hover:bg-yellow-600">Edit</button>
+                            </Link>
+                              <form action={deleteItem}>
+                                <input
+                                type="hidden"
+                                name="id"
+                                value={item._id.toString()}
+                                />
+                                <button className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600">Delete</button>
+                              </form>
+                            
                           </td>
                       </tr>
                   ))}
